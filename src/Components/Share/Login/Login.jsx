@@ -2,9 +2,11 @@ import { Button, Card, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { FaGoogle } from 'react-icons/fa';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
-  const {user,login}= useContext(AuthContext)
+  const {user,login,googlesignup}= useContext(AuthContext)
 
   const handlelogin = event=>{
     event.preventDefault()
@@ -14,6 +16,20 @@ const Login = () => {
     console.log(email,password)
 
     login(email,password)
+    .then(result=>{
+      const user = result.user
+      console.log(user)
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+
+  }
+
+  const googleprovider =  new GoogleAuthProvider ();
+  const hanheGoogleProvider=()=>{
+    googlesignup(googleprovider)
     .then(result=>{
       const user = result.user
       console.log(user)
@@ -56,18 +72,13 @@ const Login = () => {
           required={true}
         />
       </div>
-      <div className="flex items-center gap-2">
-        <Checkbox id="remember" />
-        <Label htmlFor="remember">
-          Remember me
-        </Label>
-      </div>
+     
       <p> Not registered? <NavLink className='text-blue-700 hover:underline dark:text-blue-500' to ='/signup'>Register</NavLink> </p>
       <Button type="submit">
         Submit
       </Button>
     </form>
-    <Button> </Button>
+    <Button onClick={hanheGoogleProvider} > Sign with  <FaGoogle className='ml-4'/>  </Button>
   </Card>
 </div>
     );
