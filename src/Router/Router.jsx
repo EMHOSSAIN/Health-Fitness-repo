@@ -30,7 +30,9 @@ const router =  createBrowserRouter([
         },
         {
           path:'/card/:id',
-          element:<DescriptionCard></DescriptionCard>
+          element:<DescriptionCard></DescriptionCard>,
+          loader: ({params})=> fetch(`http://localhost:5000/service/${params.id}`)
+          
         }
         
       ]
