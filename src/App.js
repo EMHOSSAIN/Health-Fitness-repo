@@ -6,7 +6,7 @@ import router from './Router/Router';
 const App = () => {
   
   return (
-    <div>
+    <div className='w-11/12 m-auto'>
     <RouterProvider router={router} > </RouterProvider>
     </div>
   );
