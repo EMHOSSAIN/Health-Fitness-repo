@@ -5,9 +5,11 @@ import Threeproducts from './3products/Threeproducts';
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
 import Banner from './Banner/Banner';
 import CourseCard from './CourseCard/CourseCard';
+import useTitle from '../../../useTitle/useTitle';
 
 const Home = () => {
     const [products, setProduct] = useState([])
+    useTitle('Home')
     useEffect(() => {
         fetch('http://localhost:5000/specificProduct')
             .then(res => res.json())

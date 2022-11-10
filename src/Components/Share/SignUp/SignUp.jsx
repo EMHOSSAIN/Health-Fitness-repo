@@ -1,10 +1,12 @@
 import { Button, Card, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
+import useTitle from '../../../useTitle/useTitle';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 
 const SignUp = () => {
     const {user, userupdateprofile, createUser}=useContext(AuthContext)
+    useTitle('SignUp')
     const handlesubmitted=event=>{
         event.preventDefault()
         const form = event.target;

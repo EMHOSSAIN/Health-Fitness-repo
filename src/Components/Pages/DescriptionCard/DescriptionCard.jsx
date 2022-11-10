@@ -1,30 +1,86 @@
-import { Card } from 'flowbite-react';
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import {  Button, Card, Textarea } from 'flowbite-react';
+import React, { useContext } from 'react';
+import {  useLoaderData } from 'react-router-dom';
+import { AuthContext } from '../../Share/AuthProvider/AuthProvider';
 
 const DescriptionCard = () => {
-    const { img, title, description,facility  } = useLoaderData([])
+    
+    const { user } = useContext(AuthContext)
+    const { _id, img, title, description, name, details, rating } = useLoaderData([])
+
+    const handlereview = event => {
+        event.preventDefault()
+        const form = event.target;
+        const email = user?.email || "Unregesterd"
+        const message = form.message.value;
+        console.log(email, message)
+
+        const review = {
+            service : _id,
+            serviceName:title,
+            email :email,
+            message:message,
+        }
+
+        fetch('http://localhost:5000/reviews',{
+            method:"POST",
+            headers:{
+                'content-type': 'application/json'
+            },
+            body:JSON.stringify(review)
+        })
+        .then(res=> res.json())
+        .then(data=> {
+            console.log(data)
+            if(data.acknowledged){
+
+             alert('Your are successfully reviewer')
+                form.reset();
+            }
+
+        })
+        .catch(error=>console.error(error))
+           
+
+       
+
+    }
+
     return (
-        <div className='w-4/5 m-auto rounded-lg pt-8 '>
+        <div className='w-8/12 m-auto rounded-lg pt-8 mb-16 '>
             <div  >
                 <Card
                     imgAlt="Meaningful alt text for an image that is not purely decorative"
-                    imgSrc= {img}
+                    imgSrc={img}
                 >
                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                       Title:{title}
+                        Title:{title}
                     </h5>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                       {description}
+                        {description}
                     </p>
-                    <h1>Facility Side: </h1>
+                    <h6> Rating:{rating} </h6>
+                    <h1 className='text-red'> 1 Facility with Details </h1>
                     <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                       Caregory:{facility.name}
+                        Facelity name :{name}
                     </h5>
                     <p className="font-normal text-gray-700 dark:text-gray-400">
-                      Details{facility.details}
+                        <span className='text-black-600'> Facelity Details</span>:{details}
                     </p>
+
+
                 </Card>
+            </div>
+
+            <div className='pt-5'>
+                <h3> Title: {title} </h3>
+               <form onSubmit={handlereview}>
+               <input name='email' type='email' placeholder='email' />
+             <  Textarea  name='message' placeholder='Leave one review' />
+                    <Button type="submit" >Review Submit</Button>
+               </form>
+
+
             </div>
         </div>
     );

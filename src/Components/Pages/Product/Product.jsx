@@ -1,9 +1,11 @@
 import { Button, Card } from 'flowbite-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTitle from '../../../useTitle/useTitle';
 
 const Product = ({ service }) => {
   const { _id, img, title, price, description } = service;
+  useTitle('Product')
   return (
     <div className='pt-10'>
       <div className="  ">

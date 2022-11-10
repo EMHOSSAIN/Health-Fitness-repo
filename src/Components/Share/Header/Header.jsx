@@ -37,8 +37,8 @@ const Header = () => {
     user?.uid?
 
     <img
-    src= {user?.photoURL}
-    className=" flex md:order-2 mr-3 h-6 sm:h-9"
+    src= {user?.photoURL }
+    className=" flex md:order-2 mr-3 h-6 sm:h-9 rounded-md "
     alt=''
   />
   :

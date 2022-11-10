@@ -1,9 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
+import useTitle from '../../../useTitle/useTitle';
 import Product from '../Product/Product';
 
 const Servics = () => {
     const[services, setServices]=useState([])
+    useTitle('Servics')
 
     useEffect( ()=>{
         fetch('http://localhost:5000/service')

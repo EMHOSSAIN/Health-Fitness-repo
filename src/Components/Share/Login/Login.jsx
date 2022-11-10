@@ -69,6 +69,7 @@ const Login = () => {
         <TextInput
           name='password'
           type="password"
+          placeholder='Your password'
           required={true}
         />
       </div>

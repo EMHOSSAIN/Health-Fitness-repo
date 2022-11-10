@@ -4,9 +4,9 @@ import React from 'react';
 const CourseCard = () => {
     return (
         <div className='grid grid-col-1 md:grid-cols-2 lg:grid-cols-2 ml-24 pt-9 gap-3 pl-8'>
-            <div className="max-w-sm">
+            <div className="max-w-sm border-solid border-2 border-indigo-600 text-black rounded-md">
                 <Card>
-                    <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
+                    <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400 ">
                         Standard plan
                     </h5>
                     <div className="flex items-baseline text-gray-900 dark:text-white">
@@ -152,7 +152,7 @@ const CourseCard = () => {
                     </button>
                 </Card>
             </div>
-            <div className="max-w-sm">
+            <div className="max-w-sm border-solid border-2 border-indigo-600 text-black rounded-md ">
                 <Card>
                     <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">
                         Standard plan
