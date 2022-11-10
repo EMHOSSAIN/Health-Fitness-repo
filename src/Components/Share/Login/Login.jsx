@@ -1,12 +1,13 @@
 import { Button, Card, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import { FaGoogle } from 'react-icons/fa';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
   const {user,login,googlesignup}= useContext(AuthContext)
+  const navigate=useNavigate()
 
   const handlelogin = event=>{
     event.preventDefault()
@@ -19,6 +20,9 @@ const Login = () => {
     .then(result=>{
       const user = result.user
       console.log(user)
+      form.reset()
+      navigate('/home')
+
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -38,6 +42,7 @@ const Login = () => {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
+    navigate('/home')
 
   }
 

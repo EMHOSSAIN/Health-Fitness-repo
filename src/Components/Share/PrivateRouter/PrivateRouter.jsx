@@ -1,12 +1,22 @@
+import { Button, Spinner } from 'flowbite-react';
 import React, { Children, useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const PrivateRouter = ({children}) => {
-   const {user}=useContext(AuthContext)
+   const {user,loading}=useContext(AuthContext)
+   const location=useLocation();
+   if(loading){
+      return <Button>
+      <Spinner aria-label="Spinner button example" />
+      <span className="pl-3">
+        Loading...
+      </span>
+    </Button>
+   }
    
    if(!user){
-    return <Navigate to="login"/>
+    return <Navigate state={{form:location}} replace to="login"/>
    }
    return Children;
 };

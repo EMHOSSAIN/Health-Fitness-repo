@@ -1,11 +1,13 @@
 import { Button, Card, Checkbox, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useTitle from '../../../useTitle/useTitle';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 
 const SignUp = () => {
     const {user, userupdateprofile, createUser}=useContext(AuthContext)
+    const navigate = useNavigate()
     useTitle('SignUp')
     const handlesubmitted=event=>{
         event.preventDefault()
@@ -19,6 +21,8 @@ const SignUp = () => {
             const user = result.user;
             console.log(user)
             form.reset()
+            navigate('/login')
+
             handleUpdateUserProfile()
         })
         .catch(error=>{
@@ -74,7 +78,7 @@ const SignUp = () => {
               name='photoURL'
                 type="text"
                 placeholder="Your photoURL"
-                // required={true}
+                required={true}
               />
            
               <div className="mb-2 block">

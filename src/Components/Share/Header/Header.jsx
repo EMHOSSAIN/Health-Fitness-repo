@@ -60,8 +60,8 @@ const Header = () => {
     <NavLink >
       Services
     </NavLink>
-    <NavLink to='/'>
-      Pricing
+    <NavLink to='/myreview'>
+     My Review
     </NavLink>
 
     <div className="flex md:order-2">

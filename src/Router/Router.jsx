@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import DescriptionCard from "../Components/Pages/DescriptionCard/DescriptionCard";
 import Home from "../Components/Pages/Home/Home";
-import Review from "../Components/Pages/Review/Review";
 import Servics from "../Components/Pages/Services/Servics";
 import Login from "../Components/Share/Login/Login";
+import PrivateRouter from "../Components/Share/PrivateRouter/PrivateRouter";
 import SignUp from "../Components/Share/SignUp/SignUp";
+import ShowReview from "../Components/ShowReview/ShowReview";
 import Main from "../Layout/Main";
 
 const router =  createBrowserRouter([
@@ -14,7 +15,7 @@ const router =  createBrowserRouter([
       children:[
         {
           path:'home',
-          element:<Home></Home>  
+          element:<PrivateRouter><Home></Home></PrivateRouter>  
         },
         {
             path:'/signup',
@@ -27,7 +28,7 @@ const router =  createBrowserRouter([
         },
         {
           path:'/service'  ,
-          element:<Servics></Servics>
+          element:<PrivateRouter><Servics></Servics></PrivateRouter>
         },
         {
           path:'/card/:id',
@@ -35,10 +36,11 @@ const router =  createBrowserRouter([
           loader: ({params})=> fetch(`http://localhost:5000/service/${params.id}`)
           
         },
+       
         {
-          path:'/review/:id',
-          element:<Review></Review>,
-          loader: ({params})=> fetch(`http://localhost:5000/review/${params.id}`)
+          path:'/myreview',
+          element:<PrivateRouter><ShowReview></ShowReview></PrivateRouter>
+
         }
         
       ]

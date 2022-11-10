@@ -13,14 +13,15 @@ const DescriptionCard = () => {
         const form = event.target;
         const email = user?.email || "Unregesterd"
         const message = form.message.value;
-        console.log(email, message)
+       
 
         const review = {
             service : _id,
             serviceName:title,
-            email :email,
+            email:email,
             message:message,
         }
+        console.log(review)
 
         fetch('http://localhost:5000/reviews',{
             method:"POST",
