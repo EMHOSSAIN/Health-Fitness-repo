@@ -1,5 +1,5 @@
 import { Button, Spinner } from 'flowbite-react';
-import React, { Children, useContext } from 'react';
+import React, {  useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
@@ -18,7 +18,7 @@ const PrivateRouter = ({children}) => {
    if(!user){
     return <Navigate state={{form:location}} replace to="login"/>
    }
-   return Children;
+   return children;
 };
 
 export default PrivateRouter;

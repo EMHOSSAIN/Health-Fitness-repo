@@ -74,10 +74,11 @@ const DescriptionCard = () => {
             </div>
 
             <div className='pt-5'>
-                <h3> Title: {title} </h3>
+               <h1 className='text-lg text-orange-700 ' > You can drop your opinion</h1>
+                <h3 className='text-lg' > Title: {title} </h3>
                <form onSubmit={handlereview}>
-               <input name='email' type='email' placeholder='email' />
-             <  Textarea  name='message' placeholder='Leave one review' />
+               <input className='hidden'  name='email' type='email' placeholder='email' />
+             <  Textarea  className='pt-5' name='message' placeholder='Leave one review' />
                     <Button type="submit" >Review Submit</Button>
                </form>
 

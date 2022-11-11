@@ -4,9 +4,9 @@ import app from '../../../Firebase/Firebase.config';
 
 
 export const AuthContext = createContext();
+const auth = getAuth(app)
 const AuthProvider = ({children}) => {
-    const auth = getAuth(app)
-    const[user,setUser] = useState()
+    const[user,setUser] = useState(null)
     const [loading,setLoading]=useState(true)
 
     
@@ -39,8 +39,9 @@ const AuthProvider = ({children}) => {
           setUser(currentUsers)
           setLoading(false)
         })
+
         return()=> Unsubscribe()
-      } ,[])
+      }, [])
    
     const authinfo={
         user,

@@ -6,7 +6,9 @@ import Login from "../Components/Share/Login/Login";
 import PrivateRouter from "../Components/Share/PrivateRouter/PrivateRouter";
 import SignUp from "../Components/Share/SignUp/SignUp";
 import ShowReview from "../Components/ShowReview/ShowReview";
+import NotFoundData from '../Components/Error/NotFoundData'
 import Main from "../Layout/Main";
+import AddToCard from "../Components/Pages/AddToCard/AddToCard";
 
 const router =  createBrowserRouter([
     {
@@ -15,7 +17,7 @@ const router =  createBrowserRouter([
       children:[
         {
           path:'home',
-          element:<PrivateRouter><Home></Home></PrivateRouter>  
+          element:<PrivateRouter><Home></Home> </PrivateRouter>
         },
         {
             path:'/signup',
@@ -28,14 +30,20 @@ const router =  createBrowserRouter([
         },
         {
           path:'/service'  ,
-          element:<PrivateRouter><Servics></Servics></PrivateRouter>
+          element:<Servics></Servics>
         },
         {
           path:'/card/:id',
-          element:<DescriptionCard></DescriptionCard>,
+          element: <PrivateRouter><DescriptionCard></DescriptionCard></PrivateRouter>,
           loader: ({params})=> fetch(`http://localhost:5000/service/${params.id}`)
           
         },
+        {
+          path:'/addtocard/:id',
+          element:<AddToCard></AddToCard>,
+          loader: ({params})=> fetch(`http://localhost:5000/service/${params.id}`)
+        },
+       
        
         {
           path:'/myreview',
@@ -45,6 +53,10 @@ const router =  createBrowserRouter([
         
       ]
       
+    },
+    {
+      path:'*',
+      element:<NotFoundData></NotFoundData>
     }
   ])
 

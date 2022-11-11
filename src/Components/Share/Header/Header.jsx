@@ -57,8 +57,8 @@ const Header = () => {
     <NavLink className='nav-color' to='/about'>
       About
     </NavLink>
-    <NavLink >
-      Services
+    <NavLink to='/addtocard' >
+     Add Service 
     </NavLink>
     <NavLink to='/myreview'>
      My Review

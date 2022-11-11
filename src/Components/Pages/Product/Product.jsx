@@ -23,7 +23,9 @@ const Product = ({ service }) => {
                 :
                 { description }
             }
+            
           </p>
+       <Link to={`/addtocard/${_id}`} > <Button>Add to Card</Button></Link>
         </Card>
       </div>
     </div>

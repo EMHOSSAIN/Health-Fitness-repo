@@ -1,7 +1,8 @@
 import { Button, Rating, Table } from 'flowbite-react';
-import React from 'react';
+import React, { useState } from 'react';
 
-const ShowReviewRow = ({ review }) => {
+const ShowReviewRow = ({ review,handleDelet }) => {
+    const [reviews,setReviews]=useState([])
     const{_id,message,email}=review
     
     // const handleDelet=id=>{
@@ -17,6 +18,28 @@ const ShowReviewRow = ({ review }) => {
     //     }
 
     // }
+    const handleupdate=id=>{
+        fetch(`http://localhost:5000/reviews/${id}`,{
+            method:'PATCH',
+            headers:{
+                'content-type':'application/json'
+            },
+            body:JSON.stringify({message:'Approved'})
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.modifiedCount > 0){
+                const remaining=reviews.filter(ord=> ord._id !==id)
+                const approving = reviews.find(ord=> ord._id === id)
+                approving.message='Approved'
+
+                const newReview = [approving,...remaining];
+                setReviews(newReview)
+            }
+
+        })
+    }
     return (
         <div>
             <Table hoverable={true}>
@@ -37,12 +60,7 @@ const ShowReviewRow = ({ review }) => {
                     </Table.Cell>
                     
                     <Table.Cell>
-                        <a
-                            href="/tables"
-                            className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                        >
-                            Edit
-                        </a>
+                        <Button onClick= { ()=> handleupdate (_id) } > Edit </Button>
                     </Table.Cell>
                 </Table.Row>
             </Table.Body>

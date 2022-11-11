@@ -1,4 +1,4 @@
-import {  Table } from 'flowbite-react';
+import {  Button, Table } from 'flowbite-react';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Share/AuthProvider/AuthProvider';
 import ShowReviewRow from './ShowReviewRow/ShowReviewRow';
@@ -22,15 +22,16 @@ const ShowReview = () => {
             .then(res=> res.json())
             .then(data=>{
                 console.log(data)
-                if(data.deleteCount > 0){
+                if(data.deletedCount > 0){
                     alert('Delete Successfully');
-                    const remaining = reviews.filter(ord=>ord._id===id);
+                    const remaining = reviews.filter(ord=>ord._id !== id);
                     setReview(remaining)
                 }
             })
         }
 
     }
+   
     return (
         <div>
             <Table striped={true}>
@@ -45,11 +46,7 @@ const ShowReview = () => {
                        Rating
                     </Table.HeadCell>
                    
-                    <Table.HeadCell>
-                        <span className="sr-only">
-                            Edit
-                        </span>
-                    </Table.HeadCell>
+                  
                 </Table.Head>
                 {
                     reviews.map(review => <ShowReviewRow
